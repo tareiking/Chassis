@@ -64,6 +64,7 @@ Vagrant.configure("2") do |config|
 
 	# Add Digital Ocean as provider
 	config.vm.provider :digital_ocean do |provider, override|
+		config.vbguest.auto_update = false
 		override.ssh.private_key_path = '~/.ssh/id_rsa'
 		override.vm.box = 'hashicorp/precise64'
 		override.vm.box_url = "https://atlas.hashicorp.com/hashicorp/boxes/precise64"
