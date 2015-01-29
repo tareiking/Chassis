@@ -61,6 +61,18 @@ module_paths.map! do |path|
 end
 
 Vagrant.configure("2") do |config|
+
+	# Add Digital Ocean as provider
+	config.vm.provider :digital_ocean do |provider, override|
+		override.ssh.private_key_path = '~/.ssh/id_rsa'
+		override.vm.box = 'hashicorp/precise64'
+		override.vm.box_url = "https://atlas.hashicorp.com/hashicorp/boxes/precise64"
+		provider.token = ''
+		provider.image = 'ubuntu-14-04-x64'
+		provider.region = 'sgp1'
+		provider.size = '512mb'
+	end
+
 	# Store the current version of Vagrant for use in conditionals when dealing
 	# with possible backward compatible issues.
 	vagrant_version = Vagrant::VERSION.sub(/^v/, '')
